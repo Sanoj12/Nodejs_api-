@@ -8,8 +8,10 @@ const app=express();
 connects();
 const port=process.env.PORT || 4000;
 
+//middleware
 app.use(express.json());
 app.use("/",require("./routes/contactRoute")); 
+app.use("/",require("./routes/userRoute"));
 app.use(errorHandler);
 
 //middleware
