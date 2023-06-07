@@ -1,6 +1,7 @@
 const express=require('express');
 const errorHandler = require("./middleware/errorhandler");
-const connects=require('./config/db')
+const connects=require('./config/db');
+const vaildateToken = require('./middleware/vaildateTokenHandler');
 const dotenv= require("dotenv").config();
 const app=express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use("/",require("./routes/contactRoute")); 
 app.use("/",require("./routes/userRoute"));
 app.use(errorHandler);
+app.use(vaildateToken);
 
 //middleware
 

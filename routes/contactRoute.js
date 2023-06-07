@@ -7,18 +7,21 @@ const {
     updateContact,
     deleteContact 
 
-} =require('../controller/contactController')
-
-router.get('/api/contact', getAllContacts).post('/api/contact',creatContact);
-
+} =require('../controller/contactController');
+const vaildateToken = require('../middleware/vaildateTokenHandler');
 
 
 
-router.get('/api/contact/:id',getContact)
+router.get('/api/contact',vaildateToken, getAllContacts).post('/api/contact',vaildateToken,creatContact);
 
-router.put('/api/contact/:id',updateContact)
 
-router.delete('/api/contact/:id', deleteContact)
+
+
+router.get('/api/contact/:id',vaildateToken,getContact)
+
+router.put('/api/contact/:id',vaildateToken,updateContact)
+
+router.delete('/api/contact/:id',vaildateToken,deleteContact)
 
 
 

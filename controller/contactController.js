@@ -7,7 +7,7 @@ const contact=require("../models/contactModel")
 //@route GET/api/contact
 
 const getAllContacts = asyncHandler(async(req, res) => {
-    const Contacts=await contact.find();
+    const Contacts=await contact.find({user_id: req.user.id});
     //console.log(req.body)
     res.status(200).json(Contacts)
 });
@@ -25,7 +25,8 @@ const creatContact = asyncHandler(async (req, res) => {
     const Contacts= await contact.create({
         name,
         email,
-        phone
+        phone,
+        user_id:req.user.id
     });
 
     res.status(201).json(Contacts);
